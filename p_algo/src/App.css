@@ -1,0 +1,65 @@
+.container {
+  width: 80%;
+  margin: 20px auto;
+  border: 1px solid black;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  position: relative;
+  background-color: #D4B996FF;
+}
+
+.row {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 20px;
+  position: relative; 
+}
+
+.green-dot-searchbar {
+  border: 2px solid black;
+  background-color: #EDE8D0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 8px;
+  margin-left: 10vw;
+  width: 20%;
+}
+
+.black-dot-textbox {
+  width: 100%;
+  height: 15vh;
+  border: 2px solid black;
+  background-color: #EDE8D0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.red-dot-button {
+  background-color: rgb(243, 228, 207);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 10vw;
+}
+
+.buttons-row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px; 
+}
+
+.buttons-row button {
+  margin-right: 10px;
+  flex-grow: 1;
+}
+
+.buttons-row button:last-child {
+  margin-right: 0;
+}
