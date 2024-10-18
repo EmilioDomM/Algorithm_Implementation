@@ -1,65 +1,104 @@
-.container {
-  width: 80%;
-  margin: 20px auto;
-  border: 1px solid black;
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 8px;
-  position: relative;
-  background-color: #D4B996FF;
-}
 
-.row {
+.top-container {
+  justify-content: center;
   display: flex;
-  justify-content: left;
-  align-items: center;
-  margin-bottom: 20px;
-  position: relative; 
 }
 
-.green-dot-searchbar {
-  border: 2px solid black;
-  background-color: #EDE8D0;
+.input{
+  background-color: #ede8d0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+  border: 2px solid black;
+  padding: 8px 12px;
   border-radius: 5px;
-  padding: 8px;
-  margin-left: 10vw;
-  width: 20%;
+  cursor: pointer;
+  margin: 1vw 0 1vh 0;
 }
 
-.black-dot-textbox {
-  width: 100%;
-  height: 15vh;
+.file-container{
+  margin: auto;
+}
+
+.textbox{
+  width: 40vw;
+  height: 30vh;
   border: 2px solid black;
-  background-color: #EDE8D0;
+  background-color: #ede8d0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 10px;
   margin-top: 10px;
+  white-space: pre-wrap; 
+  overflow-y: auto;
+
 }
 
-.red-dot-button {
+.searchbar-container {
+  text-align: center;
+}
+
+.searchbar{
+  border: 2px solid black;
+  background-color: #ede8d0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 8px;
+  margin: 1vw 1vh;
+  width: 40%;
+}
+
+.button-container {
+  text-align: center;
+}
+
+.button { 
+  margin: 0% 5% 5% 5%;
   background-color: rgb(243, 228, 207);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   color: black;
-  border: none;
+  border: 2px solid black;
   padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
-  margin-right: 10vw;
 }
 
-.buttons-row {
+.result-container{
+  justify-content: center;
+  margin-top: -5vh;
+  margin-bottom: 10vh;
+}
+
+.highlighted-text{
+  width: 80vw;
+  height: 10vh;
+  border: 2px solid black;
+  background-color: #ede8d0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px;
+  white-space: pre-wrap; 
+  margin: 1vh auto auto auto;
+  overflow-y: auto;
+}
+
+.suggestions-list{
   display: flex;
-  justify-content: space-between;
-  margin-top: 20px; 
+  flex-direction: column;
+  text-align: left;
+  width: 40%;
+  margin: -1.5vh auto 3vh auto;
+  list-style-type: none;
+  padding: 0;
 }
 
-.buttons-row button {
-  margin-right: 10px;
-  flex-grow: 1;
+.suggestions-list li {
+  padding: 5px;
+  cursor: pointer;
+  border: 2px solid black;
+  margin-top: 1vh;
+  background-color: #ede8d0;
 }
 
-.buttons-row button:last-child {
-  margin-right: 0;
+.suggestions-list li:hover {
+  background-color: #f0f0f0;
 }
