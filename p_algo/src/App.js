@@ -10,6 +10,8 @@ const App = () => {
   const [highlightedText2, setHighlightedText2] = useState("");
   const [prefix, setPrefix] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [matches, setMatches] = useState([]);  // Store matches
+  const [currentMatchIndex, setCurrentMatchIndex] = useState(0);  // Track current match
   const [myTrie] = useState(new Trie());
 
   const handleFileUpload = (event, setTextValue) => {
@@ -57,16 +59,27 @@ const App = () => {
 
   // Function to highlight the matching pattern in the text using the search bar input (for KMP)
   const highlightSearch = () => {
-    const matches = KMPSearch(textValue1, prefix);
-    if (matches.length > 0) {
-      const highlightedText = textValue1.replace(
-        new RegExp(prefix, "g"),
-        `<mark>${prefix}</mark>`
-      );
-      setHighlightedText1(highlightedText);
+    const foundMatches = KMPSearch(textValue1, prefix);
+    setMatches(foundMatches);
+    setCurrentMatchIndex(0);  // Reset to first match
+    if (foundMatches.length > 0) {
+      highlightMatch(foundMatches[0]);  // Highlight the first match
     } else {
-      setHighlightedText1(textValue1);
+      setHighlightedText1(textValue1);  // No matches, show original text
     }
+  };
+
+  // Highlight the match at a specific index
+  const highlightMatch = (matchIndex) => {
+    const matchStart = matches[matchIndex];
+    const matchEnd = matchStart + prefix.length;
+
+    const highlightedText = 
+      textValue1.slice(0, matchStart) +
+      `<mark>${prefix}</mark>` +
+      textValue1.slice(matchEnd);
+
+    setHighlightedText1(highlightedText);
   };
 
   const highlightLCS = () => {
@@ -96,6 +109,22 @@ const App = () => {
         `<mark style="background-color: green">${palindrome}</mark>`
       );
       setHighlightedText1(highlightedText);
+    }
+  };
+
+  const handleNext = () => {
+    if (matches.length > 0) {
+      const nextIndex = (currentMatchIndex + 1) % matches.length;  // Loop back to start
+      setCurrentMatchIndex(nextIndex);
+      highlightMatch(nextIndex);
+    }
+  };
+
+  const handlePrevious = () => {
+    if (matches.length > 0) {
+      const prevIndex = (currentMatchIndex - 1 + matches.length) % matches.length;  // Loop back to end
+      setCurrentMatchIndex(prevIndex);
+      highlightMatch(prevIndex);
     }
   };
 
@@ -137,29 +166,34 @@ const App = () => {
         </div>
       </div>
 
-      <div className="searchbar-container">
-        <input
-          type="text"
-          className="searchbar"
-          placeholder="Buscar..."
-          value={prefix}
-          onChange={onChange}
-          onKeyDown={handleKeyDown}
-        />
-        <ul className="suggestions-list">
-          {suggestions.map((suggestion, index) => (
-            <li key={index} onClick={() => setPrefix(suggestion)}>
-              {suggestion}
-            </li>
-          ))}
-        </ul>
-      </div>
+      <div className="middle-container">
+        <div className="searchbar-container">
+          <button onClick={handlePrevious}>{"<"}</button>
+          <input
+            type="text"
+            className="searchbar"
+            placeholder="Buscar..."
+            value={prefix}
+            onChange={onChange}
+            onKeyDown={handleKeyDown}
+          />
+          <button onClick={handleNext}>{">"}</button>
+          <ul className="suggestions-list">
+            {suggestions.map((suggestion, index) => (
+              <li key={index} onClick={() => setPrefix(suggestion)}>
+                {suggestion}
+              </li>
+            ))}
+          </ul>
+        </div>
 
-      <div className="button-container">
-        <button className="button" onClick={highlightSearch}>Buscar (KMP)</button>
-        <button className="button" onClick={highlightLCS}>Similitud (LCS)</button>
-        <button className="button" onClick={highlightPalindrome}>Palindromo</button>
+        <div className="button-container">
+          <button className="button" onClick={highlightSearch}>Buscar (KMP)</button>
+          <button className="button" onClick={highlightLCS}>Similitud (LCS)</button>
+          <button className="button" onClick={highlightPalindrome}>Palindromo</button>
+        </div>
       </div>
+      
 
       <div className="result-container">
         <div dangerouslySetInnerHTML={{ __html: highlightedText1 }} className="highlighted-text" />

@@ -35,6 +35,19 @@
 
 .searchbar-container {
   text-align: center;
+  flex-direction: row;
+}
+
+.searchbar-container button {
+  background-color: #ede8d0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+  border: 2px solid black;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 8px;
+  margin: 1vw 1vh;
 }
 
 .searchbar{
@@ -52,8 +65,8 @@
 }
 
 .button { 
-  margin: 0% 5% 5% 5%;
-  background-color: rgb(243, 228, 207);
+  margin: 0% 5% 3% 5%;
+  background-color: #ede8d0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   color: black;
   border: 2px solid black;
