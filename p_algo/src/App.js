@@ -59,13 +59,22 @@ const App = () => {
 
   // Function to highlight the matching pattern in the text using the search bar input (for KMP)
   const highlightSearch = () => {
-    const foundMatches = KMPSearch(textValue1, prefix);
-    setMatches(foundMatches);
-    setCurrentMatchIndex(0);  // Reset to first match
-    if (foundMatches.length > 0) {
-      highlightMatch(foundMatches[0]);  // Highlight the first match
-    } else {
-      setHighlightedText1(textValue1);  // No matches, show original text
+    try {
+      if (prefix.trim() === "") {  // Check if the search bar is empty
+        throw new Error("Search term is empty");  // Handle empty search term
+      }
+  
+      const foundMatches = KMPSearch(textValue1, prefix);
+      setMatches(foundMatches);
+      setCurrentMatchIndex(0);  // Reset to first match
+      if (foundMatches.length > 0) {
+        highlightMatch(foundMatches[0]);  // Highlight the first match
+      } else {
+        setHighlightedText1(textValue1);  // No matches, show original text
+      }
+    } catch (error) {
+      console.error("Error during search:", error.message);
+      alert("Please enter a valid search term.");  // Optional: Inform the user
     }
   };
 
