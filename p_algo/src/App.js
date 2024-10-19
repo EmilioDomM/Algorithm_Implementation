@@ -60,8 +60,8 @@ const App = () => {
   // Function to highlight the matching pattern in the text using the search bar input (for KMP)
   const highlightSearch = () => {
     try {
-      if (prefix.trim() === "") {  // Check if the search bar is empty
-        throw new Error("Search term is empty");  // Handle empty search term
+      if (prefix.trim() === "") {  
+        throw new Error("Search term is empty");
       }
   
       const foundMatches = KMPSearch(textValue1, prefix);
@@ -74,11 +74,10 @@ const App = () => {
       }
     } catch (error) {
       console.error("Error during search:", error.message);
-      alert("Please enter a valid search term.");  // Optional: Inform the user
+      alert("Please enter a valid search term.");  
     }
   };
 
-  // Highlight the match at a specific index
   const highlightMatch = (matchIndex) => {
     const matchStart = matches[matchIndex];
     const matchEnd = matchStart + prefix.length;
@@ -123,7 +122,7 @@ const App = () => {
 
   const handleNext = () => {
     if (matches.length > 0) {
-      const nextIndex = (currentMatchIndex + 1) % matches.length;  // Loop back to start
+      const nextIndex = (currentMatchIndex + 1) % matches.length;  
       setCurrentMatchIndex(nextIndex);
       highlightMatch(nextIndex);
     }
@@ -131,7 +130,7 @@ const App = () => {
 
   const handlePrevious = () => {
     if (matches.length > 0) {
-      const prevIndex = (currentMatchIndex - 1 + matches.length) % matches.length;  // Loop back to end
+      const prevIndex = (currentMatchIndex - 1 + matches.length) % matches.length; 
       setCurrentMatchIndex(prevIndex);
       highlightMatch(prevIndex);
     }
